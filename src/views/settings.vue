@@ -1,28 +1,14 @@
 <template>
     <DefaultLayout>
         <template v-slot:content>
-            <h1>Settings</h1>
-
-            <pre>{{ posts }}</pre>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi aliquid natus voluptatibus, ex possimus aperiam iusto vero ipsam tempora!
+            Molestiae cumque voluptatum quibusdam itaque enim, minus in reprehenderit. Ipsa, minus.
         </template>
     </DefaultLayout>
 </template>
 
 <script setup lang="ts">
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import axios from 'axios'
-import { onMounted, ref } from 'vue'
-
-const posts = ref<{ title: string; body: string }[]>([])
-
-onMounted(async () => {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-
-    posts.value = response.data
-    console.log(response)
-
-    console.log('This is the Profile Page')
-})
 </script>
 
 <style scoped>
