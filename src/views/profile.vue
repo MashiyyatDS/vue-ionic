@@ -1,22 +1,11 @@
 <template>
     <DefaultLayout>
         <template v-slot:content>
-            <div class="pa-1">
-                <v-btn density="compact" color="blue-darken-1">Sample</v-btn>
-            </div>
-
             <div class="pa-3">
                 <div v-if="loading">
-                    <ion-card v-for="loader in 10" :key="loader">
-                        <ion-list class="ion-padding">
-                            <p>
-                                <ion-skeleton-text :animated="true" style="width: 80px"></ion-skeleton-text>
-                            </p>
-                            <p>
-                                <ion-skeleton-text :animated="true" style="width: 100%" v-for="skeleton in 5" :key="skeleton" />
-                            </p>
-                        </ion-list>
-                    </ion-card>
+                    <div class="d-flex justify-center">
+                        <v-progress-circular :size="100" color="blue-darken-1" indeterminate class="align-self-center"></v-progress-circular>
+                    </div>
                 </div>
 
                 <ProductCard v-for="(product, productIndex) in products" :key="productIndex" :product="product" />
@@ -32,12 +21,11 @@ import { watch, toRaw } from 'vue'
 import { productsPaginate } from '@/graphql/Product'
 import ProductCard from '@/components/product/ProductCard.vue'
 import { ref } from 'vue'
-import { IonCard, IonList, IonSkeletonText } from '@ionic/vue'
 
 const products = ref([])
 
 const { result, loading } = useQuery(productsPaginate, {
-    first: 5,
+    first: 25,
     page: 1,
 })
 
@@ -55,18 +43,3 @@ watch(
     }
 )
 </script>
-
-<style scoped>
-.login-card-container {
-    height: 100%;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-card {
-    width: 500px;
-    padding: 5px;
-}
-</style>

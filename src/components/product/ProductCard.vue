@@ -1,14 +1,10 @@
 <template>
-    <v-card class="mb-1" theme="dark">
+    <v-card class="mb-2" theme="dark" link @click="viewProduct" :disabled="product.status !== 'Active'">
         <v-card-title>{{ product.name }}</v-card-title>
 
+        <v-card-subtitle>{{ product.item_code }}</v-card-subtitle>
+
         <v-card-text>{{ product.description }}</v-card-text>
-
-        <v-divider />
-
-        <v-card-actions>
-            <v-btn density="compact" color="blue-darken-1" variant="flat">View product</v-btn>
-        </v-card-actions>
     </v-card>
 </template>
 
@@ -20,6 +16,7 @@ type ProductType = {
     name: string
     description: string
     item_code: string
+    status: string
 }
 
 const props = defineProps({
